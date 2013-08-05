@@ -14,6 +14,7 @@ Requisites:
 -jQuery
 -All your list items should have an unique id that can be either the html elemnt id ( <element id="unique-id" ... /> )
 or a data-id attribute (<element data-id="unique-id" ... /> ).
+-History API support ( or include a polyfill :) ) 
 
  
 Pros: 
