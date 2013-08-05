@@ -23,11 +23,14 @@ Pros
 ----
 * It makes any* implementation work as described with just a couple of steps.
 * Doesn't break the back button (for the sake of the UX!) 
+* Continue right where you ended up while scrolling down 
 
 Cons
 ----
 * You can bookmark items, but since you have a dinamically created list at some point the items will probably move to the next
 page and the bookmark will no longer work. 
+* If your feed updates really quick ( like twitter or facebook ) you might lose the relation between the page and the item id (so you won't reach the correct item when hitting back) 
+* Your site might end up being so awesome it could explode D: 
 
 How to
 ------
