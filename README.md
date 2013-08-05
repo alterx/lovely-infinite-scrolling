@@ -14,14 +14,14 @@ Requisites
 ----------
 
 * jQuery
-* All your list items should have an unique id that can be either the html elemnt id ( id="unique-id" )
-or a data-id attribute ( data-id="unique-id" ).
+* All your list items should have an unique id that can be either the html element id ( id="unique-id" )
+or a data- attribute ( data-id="unique-id" ).
 * History API support ( or include a polyfill :) like this one --> https://github.com/devote/HTML5-History-API ) 
 
  
 Pros
 ----
-* It makes any* implementation work as described with just a couple of steps.
+* It makes any* (see cons section here) implementation work as described with just a couple of steps.
 * Doesn't break the back button (for the sake of the UX!) 
 * Continue right where you ended up while scrolling down 
 
