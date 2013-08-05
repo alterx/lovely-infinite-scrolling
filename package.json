@@ -1,13 +1,13 @@
 {
   "name": "LovelyIS",
-  "version": "0.1",
+  "version": "0.1.0",
   "author": "Carlos Vega",
   "description": "Lovely Infinite Scrolling",
   "dependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.1.2",
-    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-uglify": "~0.1.1"
   },
   "license": "MIT",
   "engine": {

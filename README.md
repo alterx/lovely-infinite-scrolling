@@ -10,21 +10,21 @@ It's as easy as initializing LovelyIS with a couple of selectors (for your items
 and attaching two functions to your current implementation: duringScroll() and afterAppend(). As you can tell by their names the first one needs to
 be invoked every time you track the scroll event and the second after you've already appended the new page. That's it! Sit back and enjoy :)
  
-Requisites:
------------
+Requisites
+----------
 
 * jQuery
-* All your list items should have an unique id that can be either the html elemnt id ( <element id="unique-id" ... /> )
-or a data-id attribute (<element data-id="unique-id" ... /> ).
+* All your list items should have an unique id that can be either the html elemnt id ( id="unique-id" )
+or a data-id attribute ( data-id="unique-id" ).
 * History API support ( or include a polyfill :) ) 
 
  
-Pros: 
+Pros
 ----
 * It makes any* implementation work as described with just a couple of steps.
 * Doesn't break the back button (for the sake of the UX!) 
 
-Cons:
------
+Cons
+----
 * You can bookmark items, but since you have a dinamically created list at some point the items will probably move to the next
 page and the bookmark will no longer work. 
