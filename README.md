@@ -32,6 +32,10 @@ page and the bookmark will no longer work.
 * If your feed updates really quick ( like twitter or facebook ) you might lose the relation between the page and the item id (so you won't reach the correct item when hitting back) 
 * Your site might end up being so awesome it could explode D: 
 
+TODOs
+-----
+* Figure out something to work out the quickly-updated-feed issue (the bigger the number of items per page the less possibilities of this happening)
+
 How to
 ------
 
