@@ -58,4 +58,4 @@ and
 
         LovelyIS.duringScroll(); //Everytime you track the scroll event.
 
-And Voila! :D
+And Voila! :D ISn't that Lovely? 
