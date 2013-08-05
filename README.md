@@ -16,7 +16,7 @@ Requisites
 * jQuery
 * All your list items should have an unique id that can be either the html elemnt id ( id="unique-id" )
 or a data-id attribute ( data-id="unique-id" ).
-* History API support ( or include a polyfill :) ) 
+* History API support ( or include a polyfill :) like this one --> https://github.com/devote/HTML5-History-API ) 
 
  
 Pros
