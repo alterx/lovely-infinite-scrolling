@@ -1,4 +1,5 @@
 Lovely Infinite Scrolling (LovelyIS)
+------------------------------------
 
 
 Don't you think infinite scroll should do better? Why can't I continue where I left if I reload my page or hit the back button?
@@ -10,17 +11,20 @@ and attaching two functions to your current implementation: duringScroll() and a
 be invoked every time you track the scroll event and the second after you've already appended the new page. That's it! Sit back and enjoy :)
  
 Requisites:
+-----------
 
--jQuery
--All your list items should have an unique id that can be either the html elemnt id ( <element id="unique-id" ... /> )
+* jQuery
+* All your list items should have an unique id that can be either the html elemnt id ( <element id="unique-id" ... /> )
 or a data-id attribute (<element data-id="unique-id" ... /> ).
--History API support ( or include a polyfill :) ) 
+* History API support ( or include a polyfill :) ) 
 
  
 Pros: 
--It makes any* implementation work as described with just a couple of steps.
--Doesn't break the back button (for the sake of the UX!) 
+----
+* It makes any* implementation work as described with just a couple of steps.
+* Doesn't break the back button (for the sake of the UX!) 
 
 Cons:
--You can bookmark items, but since you have a dinamically created list at some point the items will probably move to the next
+-----
+* You can bookmark items, but since you have a dinamically created list at some point the items will probably move to the next
 page and the bookmark will no longer work. 
