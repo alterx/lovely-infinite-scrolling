@@ -28,3 +28,27 @@ Cons
 ----
 * You can bookmark items, but since you have a dinamically created list at some point the items will probably move to the next
 page and the bookmark will no longer work. 
+
+How to
+------
+
+Just include the minified (or unminified version) of the plugin in your page and configure it as follows:
+
+        LovelyIS.init({
+                selectors : {
+                    item: 'item selector',
+                    footer: 'last item selector'
+                },
+                binder : $(window),  
+                usingData : true     //default is false and will use the element's id
+            });
+
+Then just make sure to call: 
+
+        LovelyIS.afterAppend(); Just after the new content is appended.
+
+and   
+
+        LovelyIS.duringScroll(); Everytime you track the scroll event.
+
+And Voila! :D
