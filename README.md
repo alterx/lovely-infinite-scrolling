@@ -45,10 +45,10 @@ Just include the minified (or unminified version) of the plugin in your page and
 
 Then just make sure to call: 
 
-        LovelyIS.afterAppend(); Just after the new content is appended.
+        LovelyIS.afterAppend(); //Just after the new content is appended.
 
 and   
 
-        LovelyIS.duringScroll(); Everytime you track the scroll event.
+        LovelyIS.duringScroll(); //Everytime you track the scroll event.
 
 And Voila! :D
