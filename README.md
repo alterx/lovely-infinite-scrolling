@@ -6,7 +6,7 @@ Don't you think infinite scroll should do better? Why can't I continue where I l
 I think you should, that's the way infinite scrolling should work everywhere. 
  
 Lovely Infinite scrolling adds this functionality to your current implemententation in no time.
-It's as easy as initializing LovelyIS with a couple of selectors (for your items and footer (last element in the list), the target for the binding)
+It's as easy as initialising LovelyIS with a couple of selectors (for your items and footer (last element in the list), the target for the binding)
 and attaching two functions to your current implementation: duringScroll() and afterAppend(). As you can tell by their names the first one needs to
 be invoked every time you track the scroll event and the second after you've already appended the new page. That's it! Sit back and enjoy :)
  
