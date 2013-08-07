@@ -45,7 +45,8 @@
                 devMode : true,
                 dataIdAttr : 'id',
                 scrollTimeout : 2500,
-                animationDuration : 2000
+                animationDuration : 2000,
+                enabled : true
             }          
         };
 
@@ -207,7 +208,7 @@
             options.pageBreakList = [options.state.currPage];
 
             _trackSelectedItem();
-            options.ready = true && (window.history && window.history.pushState);
+            options.ready = true && (window.history && window.history.pushState) && options.enabled;
             log((options.ready)?'Ready to roll :D':'Ooops, seems like this browser doesn\'t support the newest stuff D:');
             
         }
