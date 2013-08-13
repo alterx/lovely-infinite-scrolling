@@ -161,7 +161,7 @@
 
 
         function whenScrolling(){
-            if(!options.ready || options.paused || !options.enabled) return;
+            if(!options.ready || options.paused || !options.extendable.enabled) return;
 
             _updateUrlForPageIfNeeded();
             if(options.extendable.updateWhileScroll){
@@ -171,7 +171,7 @@
         }
 
         function whenAppended(){
-            if(!options.ready || !options.enabled) return;
+            if(!options.ready || !options.extendable.enabled) return;
 
             detachListeners();
 
@@ -255,7 +255,7 @@
 
             $.extend(options.extendable,opts);  
 
-            if($(options.extendable.selectors.footer).length <= 0 || !options.enabled) return;
+            if($(options.extendable.selectors.footer).length <= 0 || !options.extendable.enabled) return;
 
             var param = getParam('itemId');
             if(typeof param != 'undefined' && param != ''){
