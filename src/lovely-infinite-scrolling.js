@@ -19,6 +19,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  */
 
+
 ;(function(window, document, $, undefined){
 
     var LovelyIS = (function(opts){
@@ -101,7 +102,7 @@
 
 
         function whenScrolling(){
-            if(!options.ready || options.paused) return;
+            if(!options.ready || options.paused || !options.enabled) return;
 
             _updateUrlForPageIfNeeded();
             if(options.extendable.updateWhileScroll){
@@ -111,7 +112,7 @@
         }
 
         function whenAppended(){
-            if(!options.ready) return;
+            if(!options.ready || !options.enabled) return;
 
             detachListeners();
 
@@ -208,7 +209,7 @@
             options.pageBreakList = [options.state.currPage];
 
             _trackSelectedItem();
-            options.ready = true && (window.history && window.history.pushState) && options.enabled;
+            options.ready = true && (window.history && window.history.pushState);
             log((options.ready)?'Ready to roll :D':'Ooops, seems like this browser doesn\'t support the newest stuff D:');
             
         }
