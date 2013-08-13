@@ -12,8 +12,8 @@ module.exports = function( grunt ) {
 
     clean: {
       before: [
-        'build/min/lovelyIS-v<%= config.version %>.min.js',
-        'build/lovelyIS-v<%= config.version %>.js'
+        'build/min/lovelyIS-v*.min.js',
+        'build/lovelyIS-v*.js'
       ]
     },
 

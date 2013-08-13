@@ -78,6 +78,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  */
 
+
 ;(function(window, document, $, undefined){
 
     var LovelyIS = (function(opts){
@@ -104,7 +105,8 @@
                 devMode : true,
                 dataIdAttr : 'id',
                 scrollTimeout : 2500,
-                animationDuration : 2000
+                animationDuration : 2000,
+                enabled : true
             }          
         };
 
@@ -159,7 +161,7 @@
 
 
         function whenScrolling(){
-            if(!options.ready || options.paused) return;
+            if(!options.ready || options.paused || !options.enabled) return;
 
             _updateUrlForPageIfNeeded();
             if(options.extendable.updateWhileScroll){
@@ -169,7 +171,7 @@
         }
 
         function whenAppended(){
-            if(!options.ready) return;
+            if(!options.ready || !options.enabled) return;
 
             detachListeners();
 
