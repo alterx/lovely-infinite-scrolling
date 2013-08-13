@@ -196,7 +196,7 @@
 
             $.extend(options.extendable,opts);  
 
-            if($(options.extendable.selectors.footer).length <= 0) return;
+            if($(options.extendable.selectors.footer).length <= 0 || !options.enabled) return;
 
             var param = getParam('itemId');
             if(typeof param != 'undefined' && param != ''){
