@@ -1,7 +1,8 @@
 {
   "name": "LovelyIS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Carlos Vega",
+  "repository": "https://github.com/alterx/lovely-infinite-scrolling.git",
   "description": "Lovely Infinite Scrolling",
   "dependencies": {
     "grunt": "~0.4.0",

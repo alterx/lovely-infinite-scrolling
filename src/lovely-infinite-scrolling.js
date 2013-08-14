@@ -47,7 +47,10 @@
                 dataIdAttr : 'id',
                 scrollTimeout : 2500,
                 animationDuration : 2000,
-                enabled : true
+                enabled : true,
+                paths : [],
+                partialTracking : {},
+                fullTracking : {}
             }          
         };
 
@@ -91,13 +94,15 @@
 
 
         function _trackSelectedItem(){    
-            $(options.extendable.selectors.item).on('click', function(e){
-                setTimeout(function(){
-                    var itemId = (!options.extendable.usingData) ? $(e.currentTarget).attr('id') : $(e.currentTarget).data(options.extendable.dataIdAttr),
-                    page = ( options.pageBreakPxLocation[options.state.currentViewPage] < $(e.currentTarget).offset().top + $(e.currentTarget).height() ) ? options.state.currentViewPage + 1: options.state.currentViewPage;
-                    _updateUrl(page, itemId);
-                }, 0);
-            })
+            if (fullTracking()){
+                $(options.extendable.selectors.item).on('click', function(e){
+                    setTimeout(function(){
+                        var itemId = (!options.extendable.usingData) ? $(e.currentTarget).attr('id') : $(e.currentTarget).data(options.extendable.dataIdAttr),
+                        page = ( options.pageBreakPxLocation[options.state.currentViewPage] < $(e.currentTarget).offset().top + $(e.currentTarget).height() ) ? options.state.currentViewPage + 1: options.state.currentViewPage;
+                        _updateUrl(page, itemId);
+                    }, 0);
+                })
+            }
         }
 
 
@@ -112,7 +117,7 @@
         }
 
         function whenAppended(){
-            if(!options.ready || !options.extendable.enabled) return;
+            if(!options.ready || !options.extendable.enabled || !partialTracking() ) return;
 
             detachListeners();
 
@@ -124,6 +129,16 @@
         }
 
         // Utils
+
+        function fullTracking(){
+            var path = window.location.path;
+            return (options.extendable.fullTracking[path]) ? true : false;
+        }
+
+        function partialTracking(){
+            var path = window.location.path;
+            return (options.extendable.partialTracking[path]) ? true : false;
+        }
 
         function getElementByDataOrId(dataAttr, dataAttrValue){
             return (options.extendable.usingData) ? $('*[data-'+ dataAttr +'="'+ dataAttrValue +'"]') : $('#'+dataAttrValue);
