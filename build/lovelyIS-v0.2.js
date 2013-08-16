@@ -59,7 +59,7 @@
 
 /**
  * @author Carlos Vega
- * @version 0.1
+ * @version 0.2
  * Lovely Infinite Scrolling (LovelyIS)
  * Don't you think infinite scroll should do better? Why can't I continue where I left if I reload my page or hit the back button?
  * I think you should, that's the way infinite scrolling should work everywhere. 
@@ -104,19 +104,18 @@
                 },
                 devMode : true,
                 dataIdAttr : 'id',
-                scrollTimeout : 2500,
+                scrollTimeout : 2000,
                 animationDuration : 2000,
                 enabled : true,
-                paths : [],
-                partialTracking : {},
-                fullTracking : {}
+                partialTracking : true,
+                fullTracking : true
             }          
         };
 
         //Core functions, borowed a bit from Johnathon Sanders :), thanks man
 
         function _calculateBreakPoint() {
-            return 0 + $(document).height() - options.pixelsFromNavToBottom + $(options.extendable.selectors.footer).height(); // take in accunt the last element of the page
+            return 0 + $(document).height() - options.pixelsFromNavToBottom + $(options.extendable.selectors.footer).height(); // take in accuont the last element of the page
         }
 
 
@@ -144,21 +143,25 @@
 
         }
     
-        function _updateUrl(pageNum, itemId) {
-            if(!pageNum) return;
+        function _updateUrl(pageNum, itemId, pause) {
+
+            if(!pageNum || options.paused) return;
+
             options.state.currentViewPage = pageNum;
             var newUrl =  processParams(pageNum, itemId, window.location.pathname);
             window.history.replaceState(null,null, newUrl);
+            options.paused = pause || false;
         }
 
 
         function _trackSelectedItem(){    
-            if (fullTracking()){
+            if(options.extendable.fullTracking){
                 $(options.extendable.selectors.item).on('click', function(e){
                     setTimeout(function(){
+                        $('html, body').scrollTop(0);
                         var itemId = (!options.extendable.usingData) ? $(e.currentTarget).attr('id') : $(e.currentTarget).data(options.extendable.dataIdAttr),
-                        page = ( options.pageBreakPxLocation[options.state.currentViewPage] < $(e.currentTarget).offset().top + $(e.currentTarget).height() ) ? options.state.currentViewPage + 1: options.state.currentViewPage;
-                        _updateUrl(page, itemId);
+                        page = ( options.pageBreakPxLocation[options.state.currentViewPage] < $(e.currentTarget).offset().top + $(e.currentTarget).height() ) ? options.state.currentViewPage + 1: options.state.currentViewPage;                     
+                        _updateUrl(page, itemId, true);                      
                     }, 0);
                 })
             }
@@ -176,7 +179,7 @@
         }
 
         function whenAppended(){
-            if(!options.ready || !options.extendable.enabled || !partialTracking() ) return;
+            if(!options.ready || !options.extendable.enabled || !options.extendable.partialTracking) return;
 
             detachListeners();
 
@@ -187,17 +190,14 @@
             _trackSelectedItem();
         }
 
+        function whenLoaded(){
+            var param = getParam('itemId');
+            if(typeof param != 'undefined' && param != ''){
+                scrollToElement(getElementByDataOrId(options.extendable.dataIdAttr,param));
+            }
+        }
+
         // Utils
-
-        function fullTracking(){
-            var path = window.location.path;
-            return (options.extendable.fullTracking[path]) ? true : false;
-        }
-
-        function partialTracking(){
-            var path = window.location.path;
-            return (options.extendable.partialTracking[path]) ? true : false;
-        }
 
         function getElementByDataOrId(dataAttr, dataAttrValue){
             return (options.extendable.usingData) ? $('*[data-'+ dataAttr +'="'+ dataAttrValue +'"]') : $('#'+dataAttrValue);
@@ -216,7 +216,7 @@
                 $('html, body').animate({
                      scrollTop: element.offset().top
                  }, options.extendable.animationDuration, function(){
-                  options.paused = false; 
+                    options.paused = false; 
               });
             }, options.extendable.scrollTimeout);         
         }
@@ -272,13 +272,13 @@
 
             if($(options.extendable.selectors.footer).length <= 0 || !options.extendable.enabled) return;
 
-            var param = getParam('itemId');
-            if(typeof param != 'undefined' && param != ''){
-                scrollToElement(getElementByDataOrId(options.extendable.dataIdAttr,param));
-            }
+            $(window).load(function () { 
+              whenLoaded();
+            });
+
             options.pixelsFromNavToBottom = $(document).height() - $(options.extendable.selectors.footer).last().offset().top;  
-            options.state.currentViewPage=  getParam('page') || 1;
-            options.state.currPage=  getParam('page') || 1;
+            options.state.currentViewPage =  parseInt(getParam('page')) || 1;
+            options.state.currPage =  parseInt(getParam('page')) || 1;
             options.pageBreakPxLocation = [0,  _calculateBreakPoint()];
             options.pageBreakList = [options.state.currPage];
 
